@@ -323,8 +323,8 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'text' => 'Tipo Cuenta',
+            'url'  => '/tipos',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
