@@ -314,7 +314,7 @@ return [
         ['header' => 'Acciones'],
         [
             'text' => 'Clientes',
-            'url'  => '/clientes',
+            'url'  => '/clientes.index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

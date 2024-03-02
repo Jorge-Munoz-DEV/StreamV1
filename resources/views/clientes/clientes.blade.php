@@ -8,7 +8,7 @@
 
 @section('content')
 
-<a class="btn btn-secondary btn-sm m-2" href="{{ route('clientess.create') }}" role="button" >Crear Cliente</a>
+<a class="btn btn-secondary btn-sm m-2" href="{{ route('clientes.create') }}" role="button" >Crear Cliente</a>
 <div class="card">
     <!-- DataTables -->
     <div class="card-body table-responsive p-2">
@@ -33,9 +33,9 @@
                     <td>{{ $clientes->cli_telefono }}</td>
                     <td>{{ $clientes->cli_correo }}</td>
                     <td>{{ $clientes->cli_notas }}</td>
-                    <td>holaholas</td>
-                    {{-- <td class="d-flex">
-                        <a href="{{ route('regionales.edit', $regional->Codigo) }}"
+                   
+                    <td class="d-flex">
+                        <a href="{{ route('clientes.edit', $clientes->cli_id) }}"
                            class="btn btn-primary btn-sm mr-2"
                            onclick=""
                            style="width: 30px; height: 30px; border-radius: 50%"
@@ -43,7 +43,7 @@
                             <i class="fas fa-pen"></i>
                         </a>
 
-                        <form action="{{ route('regionales.destroy', $regional->Codigo) }}" method="POST" class="d-inline" >
+                        <form action="{{ route('clientes.destroy', $clientes->cli_id) }}" method="POST" class="d-inline" >
                             @csrf
                             @method('DELETE')
                             <button type="submit"
@@ -61,7 +61,7 @@
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
-                    </td> --}}
+                    </td>
                 </tr>
             @endforeach
             </tbody>
