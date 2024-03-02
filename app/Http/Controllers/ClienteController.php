@@ -10,7 +10,7 @@ class ClienteController extends Controller
     public function index()
     {
             $clientes = tbl_clientes::all();
-            return view('clientes.cliente', ['cliente' => $clientes]);
+            return view('clientes.clientes', ['cliente' => $clientes]);
 
     }
 
@@ -19,9 +19,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        $tipoAmbiente = TblTipoAmbiente::all();
-        $estadoAmbiente = TblEstadoAmbiente::all();
-        return view('ambientes.crearAmbientes', ['tipoAmbiente' => $tipoAmbiente, 'estadoAmbiente' => $estadoAmbiente]);
+        $clientes = tbl_clientes::all();
+       
+        return view('clientes.crearCliente', ['cliente' => $clientes]);
     }
 
     /**
@@ -30,15 +30,16 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'amb_Denominacion' => ['required'],
-            'amb_Cupo' => ['required','numeric','min:1', 'max:254', ],
-            'Codigo_tipo' => ['required'],
-            'Codigo_estado'=>['required']
+            'cli_nombre' => ['required'],
+            'cli_apellido' => ['required'],
+            'cli_telefono' => ['required'],
+            'cli_correo' => ['required'],
+            'cli_notas' => ['required']
         ]);
 
-        tblAmbiente::create($request->all());
+        tbl_clientes::create($request->all());
 
-        return redirect()->route('ambientes.index');
+        return redirect()->route('clientess.index');
     }
 
     /**
@@ -54,10 +55,10 @@ class ClienteController extends Controller
      */
     public function edit(string $id)
     {
-        $ambiente = tblAmbiente::find($id);
-        $tipoAmbiente = TblTipoAmbiente::all();
-        $estadoAmbiente = TblEstadoAmbiente::all();
-        return view('ambientes.editarAmbiente', ['ambiente'=>$ambiente, 'tipoAmbiente'=>$tipoAmbiente, 'estadoAmbiente'=>$estadoAmbiente]);
+        // $ambiente = tblAmbiente::find($id);
+        // $tipoAmbiente = TblTipoAmbiente::all();
+        // $estadoAmbiente = TblEstadoAmbiente::all();
+        // return view('ambientes.editarAmbiente', ['ambiente'=>$ambiente, 'tipoAmbiente'=>$tipoAmbiente, 'estadoAmbiente'=>$estadoAmbiente]);
     }
 
     /**
@@ -65,17 +66,17 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->validate($request, [
-            'amb_Denominacion' => ['required'],
-            'amb_Cupo' => ['required','numeric','min:1', 'max:254', ],
-            'Codigo_tipo' => ['required'],
-            'Codigo_estado'=>['required']
-        ]);
+        // $this->validate($request, [
+        //     'amb_Denominacion' => ['required'],
+        //     'amb_Cupo' => ['required','numeric','min:1', 'max:254', ],
+        //     'Codigo_tipo' => ['required'],
+        //     'Codigo_estado'=>['required']
+        // ]);
 
-        $ambiente = tblAmbiente::find($id);
-        $ambiente->update($request->all());
+        // $ambiente = tblAmbiente::find($id);
+        // $ambiente->update($request->all());
 
-        return redirect()->route('ambientes.index');
+        // return redirect()->route('ambientes.index');
     }
 
     /**
@@ -83,9 +84,9 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        $ambiente= tblAmbiente::find($id);
-        $ambiente->delete();
+        // $ambiente= tblAmbiente::find($id);
+        // $ambiente->delete();
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 }

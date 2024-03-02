@@ -8,7 +8,7 @@
 
 @section('content')
 
-{{-- <a class="btn btn-secondary btn-sm m-2" href="{{ route('regionales.create') }}" role="button" >Crear Regional</a> --}}
+<a class="btn btn-secondary btn-sm m-2" href="{{ route('clientess.create') }}" role="button" >Crear Cliente</a>
 <div class="card">
     <!-- DataTables -->
     <div class="card-body table-responsive p-2">

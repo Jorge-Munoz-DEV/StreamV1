@@ -21,4 +21,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clente');
+Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('cliente');
+
+Route::resource('clientess', \App\Http\Controllers\ClienteController::class);
+
+Route::get('/tipos', [App\Http\Controllers\TipoController::class, 'index'])->name('tipos');
