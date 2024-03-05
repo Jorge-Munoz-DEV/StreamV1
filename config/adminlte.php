@@ -314,12 +314,12 @@ return [
         ['header' => 'Acciones'],
         [
             'text' => 'Clientes',
-            'url'  => '/clientes.index',
+            'url'  => '/clientes',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'text' => 'Cuentas',
+            'url'  => '/cuentas',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
@@ -328,8 +328,8 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'text' => 'Ventas',
+            'url'  => '/ventas',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [

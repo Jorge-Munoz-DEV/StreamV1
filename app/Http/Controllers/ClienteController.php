@@ -39,7 +39,7 @@ class ClienteController extends Controller
 
         tbl_clientes::create($request->all());
 
-        return redirect()->route('clientess.index');
+        return redirect()->route('clientes.index');
     }
 
     /**

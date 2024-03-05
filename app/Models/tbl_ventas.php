@@ -9,10 +9,10 @@ class tbl_ventas extends Model
 {
     use HasFactory;
 
-    
+
     protected $table = 'tbl_ventas';
     protected $primaryKey = 'idtbl_ventas';
-    protected $fillable = ['ven_nombre_perfil','ven_fecha_compra','ven_dias','ven_fecha_vence','ven_precio','ven_pin','ven_notas'];
+    protected $fillable = ['ven_nombre_perfil','ven_fecha_compra','ven_dias','ven_fecha_vence','ven_precio','ven_pin','ven_notas','tbl_perfiles_per_id','tbl_Clientes_cli_id'];
 
     public function perfil() {
         return $this->hasMany(tbl_perfiles::class,'per_id');

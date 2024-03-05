@@ -21,24 +21,53 @@
     </head>
 
     <body>
-      <div class="loginBox"> <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="100px" width="100px">
-        <h3>Sign in here</h3>
-        <form action="{{route('register')}}" method="post">
-          @csrf
-            <div class="inputBox"> 
-              <input id="name" type="text" name="name" placeholder="Nombre"> 
-              <input id="email" type="email" name="email" placeholder="Correo Electronico"> 
-              <input id="pass" type="password" name="password" placeholder="Password"> 
-              <input id="password" type="password" name="password_confirmation" placeholder="password_confirmation"> 
-            </div> 
-            <input type="submit" name="" value="Login">
-        </form> 
-        <a href="#">Forget Password<br> </a>
-        <div class="text-center">
-            <p style="color: #59238F;">Sign-Up</p>
-        </div>
+        <section class="vh-100 gradient-custom">
+            <div class="container py-5 h-100">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
+                                <form action="{{ route('register') }}" method="post">
+                                    @csrf
+                                    <div class="mb-md-5 mt-md-4 pb-5">
+                                        <h2 class="fw-bold mb-2 text-uppercase">Registrarse</h2>
+                                        <p class="text-white-50 mb-5">Coloque sus datos</p>
         
-    </div>
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label fw-bold" for="typeNameX">Nombre</label>
+                                            <input type="text" id="typeNameX" class="form-control form-control-lg" name="name" />
+                                        </div>
+        
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label fw-bold" for="typeEmailX">Email</label>
+                                            <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" />
+                                        </div>
+        
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label fw-bold" for="typePasswordX">Contraseña</label>
+                                            <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
+                                        </div>
+        
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label fw-bold" for="typeConfirmPasswordX">Confirmar contraseña</label>
+                                            <input type="password" id="typeConfirmPasswordX" class="form-control form-control-lg" name="password_confirmation" />
+                                        </div>
+        
+                                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Registrarse</button>
+                                    </div>
+                                </form>
+                                <div>
+                                    <p class="mb-0">TIENES CUENTA? <a href="{{ route('login') }}" class="text-white-50 fw-bold">Iniciar Sesión</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+          
  
         <!-- Bootstrap JavaScript Libraries -->
         <script

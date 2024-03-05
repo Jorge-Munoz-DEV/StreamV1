@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class PerfilesController extends Controller
 {
@@ -55,10 +57,58 @@ class PerfilesController extends Controller
      */
     public function edit(string $id)
     {
-        // $ambiente = tblAmbiente::find($id);
-        // $tipoAmbiente = TblTipoAmbiente::all();
-        // $estadoAmbiente = TblEstadoAmbiente::all();
-        // return view('ambientes.editarAmbiente', ['ambiente'=>$ambiente, 'tipoAmbiente'=>$tipoAmbiente, 'estadoAmbiente'=>$estadoAmbiente]);
+        $ventas = DB::table('tbl_perfiles')
+        ->join('tbl_cuentas', 'tbl_perfiles.tbl_cuentas_cue_id', '=', 'tbl_cuentas.cue_id')
+        ->join('tbl_ventas', 'tbl_ventas.tbl_perfiles_per_id', '=', 'tbl_perfiles.per_id')
+        ->join('tbl_clientes', 'tbl_ventas.tbl_Clientes_cli_id', '=', 'tbl_clientes.cli_id')
+        ->select('tbl_ventas.*', 'tbl_clientes.*','tbl_perfiles.*', 'tbl_cuentas.*')
+        ->where('tbl_perfiles.tbl_cuentas_cue_id', '=', $id)
+        ->get();
+
+        // dd($ventas);
+        
+        $hoy = Carbon::now()->startOfDay();
+        $ventas->each(function($venta) use ($hoy){
+            $mensaje = null;
+            $color = null;
+            
+            $fechaFinal = Carbon::parse($venta->ven_fecha_vence)->startOfDay();
+            
+            $diasRestantes = $hoy->diffInDays($fechaFinal, true);
+
+            $hoyTimestamp = $hoy->timestamp;
+            $fechaFinalTimestamp = $fechaFinal->timestamp;
+            $prueba = $fechaFinalTimestamp - $hoyTimestamp;
+
+            
+            if ( $prueba == 0||$prueba > -86400) {
+                if ($diasRestantes >= 10) {
+                    $mensaje = $diasRestantes;
+                    $color = 'text-success'; // Verde
+                } elseif ($diasRestantes >= 1) {
+                    $mensaje = $diasRestantes;
+                    $color = 'text-warning'; // Amarillo
+                }
+                
+            }elseif ($prueba <= -86400) {
+                if ($diasRestantes-1 == 1){
+                    $mensaje = "Vencida (".$diasRestantes . " día)" ;
+                }else{
+                    $mensaje = "Vencida (".$diasRestantes . " días)" ;
+                }
+                $color = 'text-danger'; // Rojo           
+            }else {
+                $mensaje = "vence hoy";
+                $color = 'text-danger'; // Rojo 
+            }
+                                    
+            $venta->diasRestantes = $diasRestantes;
+            $venta->vencimiento = $mensaje;
+            // $cuenta->prueba = $prueba;
+            $venta->colorVencimiento = $color;
+        } );
+
+        return view('ventas.ventaPerfiles', ['ventas'=>$ventas]);
     }
 
     /**
